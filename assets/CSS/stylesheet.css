@@ -42,6 +42,10 @@ button:hover {
     cursor: pointer;
 }
 
+form {
+    padding: 10px 0;
+}
+
 footer {
     height: 150px;
     /* padding: 40px; */

@@ -37,7 +37,7 @@
                 <h2>Which of these is an HTML Event?</h2>
                 <button>An HTML Button is styled with a purple color.</button>
                 <button>An HTML Button is labelled "Click Here"</button>
-                <button id="correct">An HTML Button was clicked.</button>
+                <button class="correct">An HTML Button was clicked.</button>
             </section>
             <section class="question hidden">
                 <h2>Which of these is NOT a method for extracting part of a string?</h2>
@@ -70,20 +70,25 @@
         </div>
         <section id="final-score" class="hidden">
             <h2>Your Score: <span id="final-score"></span></h2>
-            <p id="valid-score" class="hidden">Congratulations! You finished the quiz with a score of <span id="score"></span> points.</p>
+            <div id="valid-score" class="hidden">
+                <p>Congratulations! You finished the quiz with a score of <span id="score"></span> points.</p>
+                <p>Add your initials and check Leader Board to see if you got a top score!</p>
+                <form action="">
+                    <label for="initials">Enter Your Initials</label>
+                    <input type="text" id="initials" required>
+                    <button id="enter-initials-btn">Submit</button>
+                </form>
+            </div>
             <p id="no-score" class="hidden">Sorry, your time ran out! Refresh the page to try again.</p>
-            <p class="leader-score hidden">You have achieved a high score!  Add your initials to the Leader Board.</p>
-            <form action="" class= "leader-score hidden">
-                <label for="initials">Enter Your Initials</label>
-                <input type="text" id="initials">
-                <button>Submit</button>
-            </form>
         </section>
-        <section id="leaderBoard" class="hidden">
-            <h2>Top Three High Scores</h2>
-            <ol>
+        <section id="thanks" class="hidden">
+            <h2>Thanks for playing!</h2>
+        </section>
+        <section id="leader-board" class="hidden">
+            <h2>High Scores</h2>
+            <ul id="score-list">
 
-            </ol>
+            </ul>
         </section>
     </main>
     <footer>
