@@ -11,7 +11,7 @@
 <body>
     <header>
         <button type="button" id="view-leader-board">View Leader Board</button>
-        <p id="timer-box"><span id=timer></span> seconds left</p>
+        <p id="timer-box"><span id="timer"></span> seconds left</p>
     </header>
     
     <main>
@@ -70,8 +70,10 @@
         </div>
         <section id="final-score" class="hidden">
             <h2>Your Score: <span id="final-score"></span></h2>
-            <p></p>
-            <form action="" class="hidden">
+            <p id="valid-score" class="hidden">Congratulations! You finished the quiz with a score of <span id="score"></span> points.</p>
+            <p id="no-score" class="hidden">Sorry, your time ran out! Refresh the page to try again.</p>
+            <p class="leader-score hidden">You have achieved a high score!  Add your initials to the Leader Board.</p>
+            <form action="" class= "leader-score hidden">
                 <label for="initials">Enter Your Initials</label>
                 <input type="text" id="initials">
                 <button>Submit</button>
