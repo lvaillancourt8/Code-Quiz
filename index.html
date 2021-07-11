@@ -15,7 +15,7 @@
     </header>
     
     <main>
-        <section id="welcome-screen" style="display: ;">
+        <section id="welcome">
             <h1>The Coding Quiz Challenge</h1>
             <p>Test your coding knowledge as you race against the clock. Try to answer all the questions before your time is up.
             </p>
@@ -25,48 +25,59 @@
             </p>
             <button type="button" id="start-quiz" style="margin: 20px auto;">Begin the Quiz</button>
         </section>
-        <section id="question1" style="display: none;">
+        <div id="question-section">
+            <section id="question1" class="question hidden">
             <h2>Which of these is NOT a JavaScript data type?</h2>
             <button>Number</button>
-            <button class=correct>Decimal</button>
+            <button class="correct">Decimal</button>
             <button>String</button>
             <button>Object</button>
+            </section>
+            <section class="question hidden">
+                <h2>Which of these is an HTML Event?</h2>
+                <button>An HTML Button is styled with a purple color.</button>
+                <button>An HTML Button is labelled "Click Here"</button>
+                <button id="correct">An HTML Button was clicked.</button>
+            </section>
+            <section class="question hidden">
+                <h2>Which of these is NOT a method for extracting part of a string?</h2>
+                <button>slice</button>
+                <button class="correct">cut</button>
+                <button>substring</button>
+                <button>substr</button>
+            </section>
+            <section class="question hidden">
+                <h2>Which of the following is NOT a JavaScript Method for numbers?</h2>
+                <button>toString()</button>
+                <button>toExponential()</button>
+                <button>toFixed()</button>
+                <button class="correct">toInfinity()</button>
+            </section>
+            <section class="question hidden">
+                <h2>Which of the following is NOT a valid JavaScript Date Format?</h2>
+                <button>ISO Date</button>
+                <button>Short Date</button>
+                <button>Long Date</button>
+                <button class="correct">Bad Date</button>
+            </section>
+            <section class="question hidden">
+                <h2>Which of these operators evaluates if two values are not of equal value and not of equal type</h2>
+                <button>===</button>
+                <button>!=</button>
+                <button class="correct">!==</button>
+                <button>>=</button>
+            </section>
+        </div>
+        <section id="final-score" class="hidden">
+            <h2>Your Score: <span id="final-score"></span></h2>
+            <p></p>
+            <form action="" class="hidden">
+                <label for="initials">Enter Your Initials</label>
+                <input type="text" id="initials">
+                <button>Submit</button>
+            </form>
         </section>
-        <section id="question2" style="display: none;">
-            <h2><strong>Which of these is an HTML Event?</h2>
-            <button>An HTML Button is styled with a purple color.</button>
-            <button>An HTML Button is labelled "Click Here"</button>
-            <button id="correct">An HTML Button was clicked.</button>
-        </section>
-        <section id="question3" style="display: none;">
-            <h2><strong>Which of these is NOT a method for extracting part of a string?</h2>
-            <button>slice</button>
-            <button class="correct">cut</button>
-            <button>substring</button>
-            <button>substr</button>
-        </section>
-        <section id="question4" style="display: none;">
-            <h2><strong>Which of the following is NOT a JavaScript Method for numbers?</h2>
-            <button>toString()</button>
-            <button>toExponential()</button>
-            <button>toFixed()</button>
-            <button class=correct>toInfinity()</button>
-        </section>
-        <section id="question5" style="display: none;">
-            <h2><strong>Which of the following is NOT a valid JavaScript Date Format?</h2>
-            <button>ISO Date</button>
-            <button>Short Date</button>
-            <button>Long Date</button>
-            <button>Bad Date</button>
-        </section>
-        <section id="question6" style="display: none;">
-            <h2><strong>Which of these operators evaluates if two values are not of equal value and not of equal type</h2>
-            <button>===</button>
-            <button>!=</button>
-            <button>!==</button>
-            <button>>=</button>
-        </section>
-        <section id="leaderBoard" style="display: none;">
+        <section id="leaderBoard" class="hidden">
             <h2>Top Three High Scores</h2>
             <ol>
 

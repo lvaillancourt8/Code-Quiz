@@ -1,8 +1,15 @@
 var timerEl = document.querySelector("#timer");
 var timerBoxEl = document.querySelector('#timer-box');
-var secondsLeft = 10;
+var secondsLeft = 60;
 var startQuizButtonEl = document.querySelector("#start-quiz");
-var quizQuestionsEl = document.getElementsByTagName('section');
+var question = 0;
+var questionCorrect = 0;
+var questionWrong = 0;
+var welcomeEL = document.querySelector("#welcome");
+var question1El = document.querySelector("#question1");
+var questionSection = document.querySelector("#question-section");
+var element;
+var finalScoreReveal = document.querySelector("#final-score");
 
 function setTimer() {
   var timerInterval = setInterval(function() {
@@ -18,4 +25,42 @@ function setTimer() {
   }, 1000);
 }
 
-startQuizButtonEl.addEventListener("click", setTimer);
+function showNextQuestion() {
+  element.parentElement.classList.add("hidden");
+  var parent = element.parentElement;
+    if(parent.nextElementSibling !== "null") {
+      parent.nextElementSibling.classList.remove("hidden");
+    }
+  else {
+    // stop the clock
+    finalScore();
+  }
+}
+
+function finalScore() {
+  finalScoreReveal.classList.remove("hidden");
+}
+
+startQuizButtonEl.addEventListener("click", function(){
+  setTimer();
+  welcomeEL.setAttribute("class", "hidden");
+  question1El.classList.remove("hidden");
+});
+
+// Listen for any clicks within quiz question container
+questionSection.addEventListener("click", function(event) {
+  element = event.target;
+
+  // Check if the clicked element was a button
+  if (element.matches("button")) {
+    var correct = element.getAttribute("class");
+    if (correct === "correct") {
+      secondsLeft += 5;
+    } 
+    else {
+      secondsLeft -= 5;
+    }
+  }
+  showNextQuestion();
+});
+

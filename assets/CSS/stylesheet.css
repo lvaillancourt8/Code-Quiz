@@ -9,33 +9,30 @@ body {
 }
 
 header {
-    padding: 40px;
+    height: 150px;
+    /* padding: 40px; */
     background-color: navy;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-footer {
-    padding: 40px;
-    background-color: navy;
-    color: white;
-    text-align: center;
-}
+/* main {
+    height: 70vh;
+} */
 
 section {
-    margin: 10% auto;
+    margin: 5% auto;
     width: 40%;
 }
 
-
 p {
-    margin-bottom: 6px;
+    padding: 10px 0;
 }
 
 button {
     margin: 5px;
-    padding: 20px;
+    padding: 15px;
     background-color: azure;
     display: block;
 }
@@ -45,9 +42,27 @@ button:hover {
     cursor: pointer;
 }
 
+footer {
+    height: 150px;
+    /* padding: 40px; */
+    background-color: navy;
+    color: white;
+    text-align: center;
+}
+
+footer p {
+    padding-top: 30px;
+}
+
 #timer-box {
     margin: 5px;
-    padding: 20px;
+    padding: 15px;
+    width: 150px;
     background-color: azure;
     display: block;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
