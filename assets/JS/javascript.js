@@ -1,33 +1,29 @@
-var timerEl = document.querySelector("#timer");
+// Global Variables
 var timerBoxEl = document.querySelector('#timer-box');
 var timerInterval;
 var timer_is_on = false;
 var secondsLeft = 60;
 var startQuizButtonEl = document.querySelector("#start-quiz");
 var question = 0;
-var questionCorrect = 0;
-var questionWrong = 0;
-var welcomeEL = document.querySelector("#welcome");
-var question1El = document.querySelector("#question1");
-var questionSectionEL = document.querySelector("#question-section");
+var welcomeEl = document.querySelector("#welcome");
+var questionSectionEl = document.querySelector("#question-section");
 var element;
 var finalScoreEl = document.querySelector("#final-score");
-var validScoreEL = document.querySelector("#valid-score");
-var noScoreEL = document.querySelector("#no-score");
-var leaderScoreNoticeEl = document.querySelector("#leader-score-notice");
-var leaderScoreInputEl = document.querySelector("#leader-score-input");
-var scoreEL = document.querySelector("#score");
-var enterInitialsBtnEL = document.querySelector("#enter-initials-btn");
-var initialsEL = document.querySelector("#initials");
+var noScoreEl = document.querySelector("#no-score");
+var enterInitialsBtnEl = document.querySelector("#enter-initials-btn");
 var topScores = JSON.parse(localStorage.getItem("topScores")) || [];
-var leaderBoardEl = document.querySelector("#leader-board");
-var scoreList = document.querySelector("#score-list");
+var scoreListEl = document.querySelector("#score-list");
 var thanksEl = document.querySelector("#thanks");
 var viewLeaderBoardBtnEl = document.querySelector("#view-leader-board");
+var playAgain1El = document.querySelector("#play-again1");
+var playAgain2El = document.querySelector("#play-again2");
+var topFiveScores = [];
+// var topScoresList = [];
 
 //Quiz Timer Functions
-//Timer Interval
+//Timer Interval / Turn Font Red When Timer Gets to 5 Seconds / Stop Timer and Display "Times Up!" when timer reaches 0
 function timedCount() {
+  var timerEl = document.querySelector("#timer");
   timerInterval = setInterval(function() {
     timerEl.textContent = secondsLeft;
     secondsLeft--;
@@ -37,14 +33,14 @@ function timedCount() {
     else if(secondsLeft === 0) {
       clearInterval(timerInterval);
       timerBoxEl.innerHTML = "Time's Up!";
-      questionSectionEL.classList.add("hidden");
+      questionSectionEl.classList.add("hidden");
       finalScoreEl.classList.remove("hidden");
-      noScoreEL.classList.remove("hidden");
+      noScoreEl.classList.remove("hidden");
     }
   }, 1000);
 }
 
-//Start Countdown
+//Start Timer Countdown
 function startCount() {
   if (!timer_is_on) {
     timer_is_on = true;
@@ -52,12 +48,13 @@ function startCount() {
   }
 }
 
-//Stop Countdown
+//Stop Timer Countdown
 function stopCount() {
   clearTimeout(timerInterval);
   timer_is_on = false;
 }
 
+//Show the Next Quiz Question and Show Final Score when last Question is Answered
 function showNextQuestion() {
   element.parentElement.classList.add("hidden");
   var parent = element.parentElement;
@@ -69,49 +66,64 @@ function showNextQuestion() {
   }
 }
 
+//Evaluate score at the end of the quiz and display appropriate messages
 function finalScore() {
+  var validScoreEl = document.querySelector("#valid-score");
+  var scoreEl = document.querySelector("#score");
   stopCount();
   if (secondsLeft > 0) {
-    scoreEL.textContent = secondsLeft;
+    scoreEl.textContent = secondsLeft;
     timerBoxEl.innerHTML = "Great Job!"
     finalScoreEl.classList.remove("hidden");  
-    validScoreEL.classList.remove("hidden");
+    validScoreEl.classList.remove("hidden");
   }
   else {
     timerBoxEl.innerHTML = "Time's Up!";
     finalScoreEl.classList.remove("hidden");  
-    noScoreEL.classList.remove("hidden");
+    noScoreEl.classList.remove("hidden");
   }
 }
 
-function storeUserScore(event) {
-  event.preventDefault();
-  var score = {
-    "score": secondsLeft,
-    "initials": initialsEL.value
+//Refresh the screen when a user wants to take the quiz again
+function startAgain(event) {
+  console.log("hello");
+  window.location.reload();			
+}
+
+//Sorts Top Scores List and Creates a List of the Top 5 Scores
+function sortTopScoresList() {
+  topScores.sort((a, b) => b.score - a.score);
+  topFiveScores = topScores.slice(0, 5);
+}
+
+//Renders the top five scores to the Leader Board
+function renderScoresToPage() {
+  scoreListEl.innerHTML = "";
+  var scores = document.getElementById("score-list");
+
+  for (var i = 0; i < topFiveScores.length; i++ ) {
+      var item = document.createElement("li");
+      item.innerHTML = topFiveScores[i].score + " points by " + topFiveScores[i].initials;
+      scores.appendChild(item);
   }
-  topScores.push(score);
-  localStorage.setItem("topScores", JSON.stringify(topScores));
-  finalScoreEl.setAttribute("class", "hidden");
-  thanksEl.classList.remove("hidden");
 }
 
-function showLeaderBoard(event) {
-  // document.body.getElementsByTagName("section").classList.add("hidden");
-  leaderBoardEl.classList.remove("hidden");
-}
-
+//Start Quiz Button Event Listener
 startQuizButtonEl.addEventListener("click", function(){
+  var question1El = document.querySelector("#question1");
   startCount();
-  welcomeEL.setAttribute("class", "hidden");
+  welcomeEl.setAttribute("class", "hidden");
   question1El.classList.remove("hidden");
 });
 
-// Listen for any clicks within quiz question container
-questionSectionEL.addEventListener("click", function(event) {
+// Listen for any clicks within quiz question container / update seconds based on correct and incorrect answers 
+questionSectionEl.addEventListener("click", function(event) {
   element = event.target;
   // Check if the clicked element was a button
-  if (element.matches("button")) {
+  if (!element.matches("button")) {
+    return;
+    }
+  else {
     var correct = element.getAttribute("class");
     if (correct === "correct") {
       secondsLeft += 5;
@@ -123,6 +135,35 @@ questionSectionEL.addEventListener("click", function(event) {
   showNextQuestion();
 });
 
-enterInitialsBtnEL.addEventListener("click", storeUserScore);
+//Event Listener for when user enters their initials
+enterInitialsBtnEl.addEventListener("click", function(event) {
+  event.preventDefault();
+  var initialsEl = document.querySelector("#initials");
+  var score = {
+    "score": secondsLeft,
+    "initials": initialsEl.value
+  }
+  topScores.push(score);
+  localStorage.setItem("topScores", JSON.stringify(topScores));
+  finalScoreEl.setAttribute("class", "hidden");
+  thanksEl.classList.remove("hidden");
+});
 
-viewLeaderBoardBtnEl.addEventListener("click", showLeaderBoard);
+//Event Listener for when user clicks on View Leader Board Button 
+viewLeaderBoardBtnEl.addEventListener("click", function(event) {
+  sortTopScoresList();
+  renderScoresToPage();
+  var leaderBoardEl = document.querySelector("#leader-board");
+  welcomeEl.setAttribute("class", "hidden");
+  questionSectionEl.setAttribute("class", "hidden");
+  finalScoreEl.setAttribute("class", "hidden");
+  thanksEl.setAttribute("class", "hidden");
+  leaderBoardEl.classList.remove("hidden");
+});
+
+//Event Listener for start again button on the Thanks for Playing page
+playAgain1El.addEventListener("click", startAgain);
+
+//Event Listener for start again button on the Leader Board page
+playAgain2El.addEventListener("click", startAgain);
+
