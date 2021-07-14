@@ -33,4 +33,6 @@ THEN I can save my initials and my score
 
 The following image shows the application's appearance:
 https://github.com/lvaillancourt8/Code-Quiz/blob/main/assets/images/code-quiz-screenshot.png
+![image](https://user-images.githubusercontent.com/55712456/125680675-d0463be9-ca82-4571-ba55-ba165b8353ff.png)
+
 
