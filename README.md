@@ -32,3 +32,5 @@ THEN I can save my initials and my score
 ## Mock-Up
 
 The following image shows the application's appearance:
+https://github.com/lvaillancourt8/Code-Quiz/blob/main/assets/images/code-quiz-screenshot.png
+
