@@ -4,6 +4,9 @@ Coding Bootcamp Homework #4 - use javascript to create an interactive quiz appli
 ## Link to Live Application
 https://lvaillancourt8.github.io/Code-Quiz/
 
+## Technologies Used
+HTML, CSS, Javascript
+
 
 ## User Story
 
@@ -34,5 +37,9 @@ THEN I can save my initials and my score
 The following image shows the application's appearance:
 https://github.com/lvaillancourt8/Code-Quiz/blob/main/assets/images/code-quiz-screenshot.png
 ![image](https://user-images.githubusercontent.com/55712456/125680675-d0463be9-ca82-4571-ba55-ba165b8353ff.png)
+
+## License
+
+Licenced under [MIT License](LICENSE)
 
 
