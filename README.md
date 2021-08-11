@@ -40,6 +40,10 @@ https://github.com/lvaillancourt8/Code-Quiz/blob/main/assets/images/code-quiz-sc
 
 ## License
 
-Licenced under [MIT License](LICENSE)
+Licenced under [MIT License](license)
+
+## Contact
+
+Leslie Vaillancourt - classvaillan@gmail.com
 
 
